@@ -4,11 +4,17 @@ ViewControler 是一种界面开发组件化实现方式,利用它可以将一�
 
 关于 ViewControler 这种思想的介绍,也可以查看我之前写的一篇文章,[Android 复杂界面开发实践之 ViewController: 前言](http://gudong.name/2016/10/13/viewcontroller-foreword.html)
 
-## Usage 
+## 使用方法 
 
-### 根据业务需求,划分 UI 组件
+目前已经使用 ViewControler 完成了一个房屋详情页开发 demo ,你可以直接运行代码,查看 demo 如何运行,下面是一般的使用流程。
 
-如下所示是一个示例的 UI 开发场景,这是一个房屋详情页面,按照一般的开发方式,我们需要在 layout 中先写好所有的布局,然后在对应的 Activity 中
+### 1、根据业务需求,划分 UI 组件
+
+如下所示是一个示例的 UI 开发场景,这是一个房屋详情页面,
+
+<img src="http://upload-images.jianshu.io/upload_images/588640-4622841b96a84fc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="400">
+
+按照一般的开发方式,我们需要在 layout 中先写好所有的布局,然后在对应的 Activity 中
 实例化所有的 View 示例,然后请求数据后,把数据分别填充在不同的 View 上,最终完成这个界面的开发。
 
 但是现在,我们利用 ViewControler 后,可以把这儿界面组件化,显然我们可以把它分为四个 UI 组件。
@@ -20,7 +26,7 @@ ViewControler 是一种界面开发组件化实现方式,利用它可以将一�
 
 至于怎么划分组件,完全取决于具体的 UI 情景,这里只是以一个房屋详情页进行举例。
 
-### 利用 ViewControler 分别实现对应的组件
+### 实现组件
 
 只要划分完组件后,接下来就是分别实现组件的过程,这里以评论组件位例进行介绍,这里命名为 HouseCommentViewControler。
 
@@ -43,7 +49,41 @@ ViewControler 是一种界面开发组件化实现方式,利用它可以将一�
 ViewControler 是一个泛型类,这里的 T 是这个 ViewControler 对应的数据类型。对于评论组件,只是展示一列不同用户的评价信息,
 使用简单的字符串集合即可,所以这里的 T 应该是 List<String>.
 
-具体实现可查看对应 demo [源码]()
+#### 示例
+
+下面是 HouseCommentViewControler 的实现方式
+
+```java
+//继承 ViewControler
+public class HouseCommentViewControler extends ViewControler<List<String>> 
+
+//指定 layout id 
+@Override
+protected int resLayoutId() {
+    return R.layout.detail_comment_layout;
+}
+
+// View 初始化
+@Override
+protected void onCreatedView(View view) {
+    ButterKnife.bind(this,view);
+}
+
+// 绑定数据到 view
+@Override
+protected void onBindView(List<String> comments) {
+    for (String comment:comments) {
+        TextView view = new TextView(getContext());
+        view.setBackgroundResource(R.color.bk_item);
+        view.setText(comment);
+        int padding = Utils.dp2px(16);
+        view.setPadding(padding,padding,padding,padding);
+        mLlContainer.addView(view);
+    }
+}
+```
+
+具体实现可查看对应 demo 中 HouseCommentViewControler 的[实现源码](https://github.com/maoruibin/ViewControler/blob/master/app/src/main/java/name/gudong/demo/view/HouseCommentViewControler.java)
 
 至此,评论组件的实现类 HouseCommentViewControler 已经开发完毕,剩下的其他组件开发方式都一样。
 
@@ -87,6 +127,10 @@ private void fillData(HouseDetail detail) {
     mHouseCommentViewControler.fillData(detail.comments);
 }
 ```
+
+最终的实现结果如下
+
+<img src="files/practice-demo.png" width="800">
 
 ### 总结 
 
