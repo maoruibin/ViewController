@@ -17,6 +17,13 @@
 package name.gudong.demo;
 
 import android.content.res.Resources;
+import android.view.View;
+import android.widget.TextView;
+
+import java.util.List;
+
+import butterknife.ButterKnife;
+import name.gudong.viewcontrol.ViewControler;
 
 /**
  * Created by GuDong on 05/11/2016 20:51.
@@ -32,4 +39,5 @@ public class Utils {
         float scale = Resources.getSystem().getDisplayMetrics().scaledDensity;
         return (int) (sp * scale + 0.5f);
     }
+
 }
