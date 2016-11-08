@@ -28,11 +28,11 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import name.gudong.demo.entity.HouseDetail;
-import name.gudong.demo.view.HouseCommentViewControler;
-import name.gudong.demo.view.HouseDescViewControler;
-import name.gudong.demo.view.HouseParamViewControler;
+import name.gudong.demo.view.HouseCommentViewController;
+import name.gudong.demo.view.HouseDescViewController;
+import name.gudong.demo.view.HouseParamViewController;
 import name.gudong.demo.view.HousePhotoViewController;
-import name.gudong.viewcontrol.ViewControler;
+import name.gudong.viewcontroller.ViewController;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.pb)
     ProgressBar mPb;
 
-private ViewControler<List<String>> mHousePhotoViewController;
-private ViewControler<HouseDetail.Param> mHouseParamViewControler;
-private ViewControler<List<String>> mHouseCommentViewControler;
-private ViewControler<String> mHouseDescViewControler;
+private ViewController<List<String>> mHousePhotoViewController;
+private ViewController<HouseDetail.Param> mHouseParamViewControler;
+private ViewController<List<String>> mHouseCommentViewControler;
+private ViewController<String> mHouseDescViewControler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +54,9 @@ private ViewControler<String> mHouseDescViewControler;
         ButterKnife.bind(this);
 
         mHousePhotoViewController = new HousePhotoViewController(this);
-        mHouseParamViewControler = new HouseParamViewControler(this);
-        mHouseDescViewControler = new HouseDescViewControler(this);
-        mHouseCommentViewControler = new HouseCommentViewControler(this);
+        mHouseParamViewControler = new HouseParamViewController(this);
+        mHouseDescViewControler = new HouseDescViewController(this);
+        mHouseCommentViewControler = new HouseCommentViewController(this);
 
         mHousePhotoViewController.attachRoot(mLlContainer);
         mHouseParamViewControler.attachRoot(mLlContainer);

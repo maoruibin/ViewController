@@ -23,18 +23,18 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import name.gudong.demo.R;
-import name.gudong.viewcontrol.ViewControler;
+import name.gudong.viewcontroller.ViewController;
 
 /**
  * Created by GuDong on 05/11/2016 21:30.
  * Contact with gudong.name@gmail.com.
  */
 
-public class HouseDescViewControler extends ViewControler<String> {
+public class HouseDescViewController extends ViewController<String> {
     @Bind(R.id.tv_desc)
     TextView mTvDesc;
 
-    public HouseDescViewControler(Context context) {
+    public HouseDescViewController(Context context) {
         super(context);
     }
 

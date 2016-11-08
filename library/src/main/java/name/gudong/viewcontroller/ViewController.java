@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package name.gudong.viewcontrol;
+package name.gudong.viewcontroller;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -26,14 +26,14 @@ import android.view.ViewGroup;
  * core of view controler
  * Created by GuDong on 7/13/16 22:42.
  * Contact with gudong.name@gmail.com.
- * @param <T> data type for this ViewControler, a view controler should map a data type
+ * @param <T> data type for this ViewController, a view controler should map a data type
  */
-public abstract class ViewControler<T> {
+public abstract class ViewController<T> {
     private T mData;
     private Context mContext;
     private View mView;
 
-    public ViewControler(Context context) {
+    public ViewController(Context context) {
         this.mContext = context;
     }
 

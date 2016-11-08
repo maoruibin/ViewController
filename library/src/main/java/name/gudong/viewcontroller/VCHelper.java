@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package name.gudong.viewcontrol;
+package name.gudong.viewcontroller;
 
 import android.view.ViewGroup;
 
@@ -22,13 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO use this class manage ViewControler
+ * TODO use this class manage ViewController
  * Created by GuDong on 05/11/2016 21:51.
  * Contact with gudong.name@gmail.com.
  */
 
 public class VCHelper {
-    private List<ViewControler>mControlers;
+    private List<ViewController>mControlers;
 
     private ViewGroup mRootView;
 
@@ -37,7 +37,7 @@ public class VCHelper {
         mRootView = rootView;
     }
 
-    public void attachControlerToView(ViewControler viewControler){
+    public void attachControlerToView(ViewController viewControler){
         if(mRootView == null){
             throw new IllegalStateException("mRootView can not be null,please call rootView() firstly ");
         }

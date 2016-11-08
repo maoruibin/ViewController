@@ -32,14 +32,14 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import name.gudong.demo.R;
-import name.gudong.viewcontrol.ViewControler;
+import name.gudong.viewcontroller.ViewController;
 
 /**
  * Created by GuDong on 27/10/2016 22:31.
  * Contact with gudong.name@gmail.com.
  */
 
-public class HousePhotoViewController extends ViewControler<List<String>> {
+public class HousePhotoViewController extends ViewController<List<String>> {
     @Bind(R.id.view_page)
     ViewPager mViewPage;
     private PhotoAdapter mAdapter;

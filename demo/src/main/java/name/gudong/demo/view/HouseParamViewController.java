@@ -27,14 +27,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import name.gudong.demo.R;
 import name.gudong.demo.entity.HouseDetail;
-import name.gudong.viewcontrol.ViewControler;
+import name.gudong.viewcontroller.ViewController;
 
 /**
  * Created by GuDong on 27/10/2016 22:33.
  * Contact with gudong.name@gmail.com.
  */
 
-public class HouseParamViewControler extends ViewControler<HouseDetail.Param> {
+public class HouseParamViewController extends ViewController<HouseDetail.Param> {
     @Bind(R.id.tv_param_one)
     TextView mTvParamOne;
     @Bind(R.id.tv_param_two)
@@ -48,7 +48,7 @@ public class HouseParamViewControler extends ViewControler<HouseDetail.Param> {
     @Bind(R.id.tv_param_six)
     TextView mTvParamSix;
 
-    public HouseParamViewControler(Context context) {
+    public HouseParamViewController(Context context) {
         super(context);
     }
 

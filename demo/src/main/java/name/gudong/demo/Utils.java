@@ -17,13 +17,6 @@
 package name.gudong.demo;
 
 import android.content.res.Resources;
-import android.view.View;
-import android.widget.TextView;
-
-import java.util.List;
-
-import butterknife.ButterKnife;
-import name.gudong.viewcontrol.ViewControler;
 
 /**
  * Created by GuDong on 05/11/2016 20:51.

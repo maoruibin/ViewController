@@ -27,19 +27,19 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import name.gudong.demo.R;
 import name.gudong.demo.Utils;
-import name.gudong.viewcontrol.ViewControler;
+import name.gudong.viewcontroller.ViewController;
 
 /**
  * Created by GuDong on 05/11/2016 20:43.
  * Contact with gudong.name@gmail.com.
  */
 
-public class HouseCommentViewControler extends ViewControler<List<String>> {
+public class HouseCommentViewController extends ViewController<List<String>> {
 
     @Bind(R.id.ll_container)
     LinearLayout mLlContainer;
 
-    public HouseCommentViewControler(Context context) {
+    public HouseCommentViewController(Context context) {
         super(context);
     }
 
