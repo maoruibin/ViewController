@@ -1,8 +1,7 @@
 # ViewController
-ViewController is a implement for UI develop component ,it aims to make ui develop change more clear and flexible,
-which in some complex ui conditions.
+ViewController is a implement for UI develop component ,it aims to make ui develop change more clear and flexible.
 
-[Chinese introduce](http://gudong.name/2016/11/06/viewcontroler-introduce.html){:target="_blank"}
+[Chinese introduce](http://gudong.name/2016/11/06/viewcontroler-introduce.html)
 
 ## demo
 
@@ -45,12 +44,11 @@ just like this demo image ,we should develop four component
 
 <img src="http://7xr9gx.com1.z0.glb.clouddn.com/practice-demo.png">
 
-> after develop, we will assemble components in activity.
  
 now I want to develop comment component as a demo,i will introduce point by code annotation
 
 ```java
-// 1、Every component mast extends ViewController
+// 1、every component mast extends ViewController
 public class HouseCommentViewController extends ViewController<List<String>> 
 
 // 2、indicate layout id for this component  
@@ -84,19 +82,21 @@ Now,we have finished a simple view component,and you can watch left components i
 
 ## Assemble Component in Activity
 
-now we have finished four components for house detail UI.
+We have finished four components for house detail UI.
 
-* HousePhotoViewController //House picture component 
-* HouseParamViewController //House param info component
-* HouseDescViewController //House description component
-* HouseCommentViewController //House comment component
+```java
+HousePhotoViewController    //House picture component 
+HouseParamViewController    //House param info component
+HouseDescViewController     //House description component
+HouseCommentViewController  //House comment component
+```
   
 the left job is assemble. the core of assemble is
   
 > every view controller support a api to attach owner's view to root layout,so activity should have a root layout use to
- fill all view
+ fill all views.
 
-the java code is like this
+The java code is like this
 
 ```java
 // 1、define ViewController instance
