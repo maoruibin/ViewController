@@ -63,14 +63,14 @@ public abstract class ViewController<T> {
     /**
      * view has been
      *
-     * @param view
+     * @param view real view
      */
     protected abstract void onCreatedView(View view);
 
     /**
      * bind data to view
      *
-     * @param data
+     * @param data data
      */
     protected abstract void onBindView(T data);
 
