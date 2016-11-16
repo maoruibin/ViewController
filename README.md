@@ -1,4 +1,7 @@
 # ViewController
+[![](https://jitpack.io/v/maoruibin/ViewController.svg)](https://jitpack.io/#maoruibin/ViewController)
+[![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/ViewController/blob/master/LICENSE.txt)
+
 A view controller manages a set of views that make up a portion of your app’s user interface, it aims to make ui develop change more clear and flexible.
 
 English | [中文](./README_CN.md) | [Android 复杂界面开发实践之 ViewController: 介绍](http://gudong.name/2016/11/06/viewcontroler-introduce.html)
