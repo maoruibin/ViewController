@@ -1,7 +1,7 @@
 # ViewController
 A view controller manages a set of views that make up a portion of your app’s user interface, it aims to make ui develop change more clear and flexible.
 
-English |[Android 复杂界面开发实践之 ViewController: 介绍](http://gudong.name/2016/11/06/viewcontroler-introduce.html)
+English |[中文](./READMEME_CN.md)|[Android 复杂界面开发实践之 ViewController: 介绍](http://gudong.name/2016/11/06/viewcontroler-introduce.html)
 
 ## demo
 
@@ -151,7 +151,7 @@ And if other activity or fragment have a same component need implement, you can 
 
 ## License
 
-    Copyright 2016 GuDong
+    Copyright 2016 咕咚
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
