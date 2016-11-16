@@ -2,19 +2,28 @@
 ViewController 是一种界面开发组件化实现方式,利用它可以将一些复杂的 UI 界面开发组件化,
 从而更好的组织代码结构,从而提高开发效率,降低维护成本。
 
-
 <img src="http://7xr9gx.com1.z0.glb.clouddn.com/practice-demo.png">
-
-## 优点
-
-* 界面开发组件化，解决 Activity/Fragment 中 UI 代码臃肿问题。
-* 灵活的 UI 开发，同一组件可用于多处，代码重用。
-* 易维护，开发简单。
-
 
 ## 使用方法 
 
-目前已经使用 ViewController 完成了一个房屋详情页开发 [demo](https://github.com/maoruibin/ViewController) ,你可以直接运行代码,查看 demo 如何运行,下面是一般的使用流程。
+你可以通过下面的依赖导入自己的项目，也可以直接拷贝 ViewController 类到自己项目，目前只包含一个类。
+
+Add the JitPack repository to your build file
+
+```java
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+Add the dependency
+
+dependencies {
+     compile 'com.github.maoruibin:ViewController:0.9.0'
+}
+
+```java
 
 所有的组件都可以通过继承 ViewController 实现, ViewController 是一个抽象类,你只需要实现下面三个抽象方法即可。
 
@@ -40,22 +49,23 @@ ViewController 是一个泛型类,这里的 T 是这个 ViewController 对应的
 下面是 HouseCommentViewController 的实现方式
 
 ```java
-//继承 ViewController
+//1、继承 ViewController
 public class HouseCommentViewController extends ViewController<List<String>> 
 
-//指定 layout id 
+//2、指定组件对应的 layoutid 
 @Override
 protected int resLayoutId() {
     return R.layout.detail_comment_layout;
 }
 
-// View 初始化
+//3、初始化该组件对应的 View 元素
 @Override
 protected void onCreatedView(View view) {
-    ButterKnife.bind(this,view);
+    mLlContainer = view.findViewById(R.id.ll_container);
+    ...
 }
 
-// 绑定数据到 view
+//4、绑定具体的数据到 view
 @Override
 protected void onBindView(List<String> comments) {
     for (String comment:comments) {
@@ -90,22 +100,25 @@ protected void onBindView(List<String> comments) {
 接下来首先需要实例化组件,接着将组件与 Activity 关联,然后在合适的时机向组件填充数据,如下所示。
  
 ```java
-//定义组件实例
+//1、定义组件实例
 private ViewController<List<String>> mHousePhotoViewController;
 private ViewController<HouseDetail.Param> mHouseParamViewController;
 private ViewController<List<String>> mHouseCommentViewController;
 private ViewController<String> mHouseDescViewController;
 
-//实例化组件
+//2、实例化每个组件对象
 mHousePhotoViewController = new HousePhotoViewController(this);
 mHouseParamViewController = new HouseParamViewController(this);
 mHouseDescViewController = new HouseDescViewController(this);
 mHouseCommentViewController = new HouseCommentViewController(this);
 
-//模拟数据获取操作
+//3、模拟数据获取操作
 getData();
 
-//数据获取成功后向组件填充数据
+//4、合适的地方调用 fillData
+fillData();
+
+//5、向组件填充数据
 private void fillData(HouseDetail detail) {
     mHousePhotoViewController.fillData(detail.photos);
     mHouseParamViewController.fillData(detail.param);
@@ -114,6 +127,12 @@ private void fillData(HouseDetail detail) {
 }
 ```
 
+到此使用 ViewController 开发的界面就已经完成，如果有任何问题，欢迎 issue.
+
+## 待做
+
+[ ] 管理 ViewController 的生命周期
+[ ] 开发一个 AndroidStudio 模板用于简化 ViewController 的实现
 
 ## Author
 
@@ -124,7 +143,7 @@ private void fillData(HouseDetail detail) {
 
 ## License
 
-    Copyright 2016 GuDong
+    Copyright 2016 咕咚
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
