@@ -1,4 +1,7 @@
 # ViewController
+[![](https://jitpack.io/v/maoruibin/ViewController.svg)](https://jitpack.io/#maoruibin/ViewController)
+[![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/ViewController/blob/master/LICENSE.txt)
+
 ViewController 是一种界面开发组件化实现方式,利用它可以将一些复杂的 UI 界面开发组件化,
 从而更好的组织代码结构,从而提高开发效率,降低维护成本。
 
