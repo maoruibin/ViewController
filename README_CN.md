@@ -20,13 +20,16 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
+```
+
 Add the dependency
 
+```java
 dependencies {
      compile 'com.github.maoruibin:ViewController:0.9.0'
 }
+```
 
-```java
 
 所有的组件都可以通过继承 ViewController 实现, ViewController 是一个抽象类,你只需要实现下面三个抽象方法即可。
 
@@ -134,8 +137,8 @@ private void fillData(HouseDetail detail) {
 
 ## 待做
 
-[ ] 管理 ViewController 的生命周期
-[ ] 开发一个 AndroidStudio 模板用于简化 ViewController 的实现
+* 管理 ViewController 的生命周期
+* 开发一个 AndroidStudio 模板用于简化 ViewController 的实现
 
 ## Author
 
