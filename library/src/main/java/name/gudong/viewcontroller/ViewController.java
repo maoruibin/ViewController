@@ -42,7 +42,8 @@ public abstract class ViewController<T> {
         if (resLayoutId <= 0) {
             throw new IllegalStateException("Please check your layout id in resLayoutId() method");
         }
-        mView = LayoutInflater.from(mContext).inflate(resLayoutId, root, true);
+        mView = LayoutInflater.from(mContext).inflate(resLayoutId, root, false);
+        root.addView(mView);
         onCreatedView(mView);
     }
 
