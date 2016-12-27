@@ -38,7 +38,7 @@ allprojects {
 Add the dependency
 ```groovy
 dependencies {
-	 compile 'com.github.maoruibin:ViewController:0.9.0'
+	 compile 'com.github.maoruibin:ViewController:0.9.1'
 }
 ```
 ## develop component
