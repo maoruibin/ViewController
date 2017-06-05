@@ -17,6 +17,8 @@
 package name.gudong.demo.view;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -43,8 +45,11 @@ public class HousePhotoViewController extends ViewController<List<String>> {
     @Bind(R.id.view_page)
     ViewPager mViewPage;
     private PhotoAdapter mAdapter;
+    private Handler mHandler;
+
     public HousePhotoViewController(Context context) {
         super(context);
+        mHandler = new Handler(Looper.getMainLooper());
     }
 
     @Override
@@ -54,35 +59,49 @@ public class HousePhotoViewController extends ViewController<List<String>> {
 
     @Override
     protected void onCreatedView(View view) {
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         mViewPage = (ViewPager) view.findViewById(R.id.view_page);
-        mAdapter = new PhotoAdapter();
+        mAdapter = new PhotoAdapter(getContext());
         mViewPage.setAdapter(mAdapter);
     }
 
     @Override
     protected void onBindView(List<String> data) {
         mAdapter.fillData(data);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 500);
     }
 
-    class PhotoAdapter extends PagerAdapter{
+    @Override
+    protected void onDestoryView(View view) {
+        super.onDestoryView(view);
+        mHandler.removeCallbacksAndMessages(null);
+    }
 
-        List<String>mPhotos;
-        List<View>mPhotoViews ;
+    static class PhotoAdapter extends PagerAdapter {
 
-        public PhotoAdapter() {
+        List<String> mPhotos;
+        List<View> mPhotoViews;
+        Context context;
+
+        public PhotoAdapter(Context context) {
             mPhotos = new ArrayList<>();
             mPhotoViews = new ArrayList<>();
+            this.context = context;
         }
 
-        void fillData(List<String>photos){
+        void fillData(List<String> photos) {
             this.mPhotos = photos;
             notifyDataSetChanged();
         }
 
         @Override
         public int getCount() {
-            Logger.i("size "+mPhotos.size());
+            Logger.i("size " + mPhotos.size());
             return mPhotos.size();
         }
 
@@ -98,9 +117,9 @@ public class HousePhotoViewController extends ViewController<List<String>> {
 
         @Override
         public View instantiateItem(ViewGroup container, int position) {
-            ImageView imageView = new ImageView(getContext());
+            ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            Picasso.with(getContext()).load(mPhotos.get(position)).into(imageView);
+            Picasso.with(context).load(mPhotos.get(position)).into(imageView);
             container.addView(imageView);
             mPhotoViews.add(imageView);
             return imageView;
