@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="ViewController"
+    minApi="9"
+    minBuildApi="14"
+    description="Creates a new ViewController">
+
+    <category value="ViewController" />
+
+    <parameter
+        id="viewControllerClass"
+        name="ViewController Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        help="The name of the ViewController class to create" />
+
+    <parameter
+        id="dataType"
+        name="DataType"
+        type="string"
+        constraints="nonempty"
+        help="The dataType of the ViewController" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
