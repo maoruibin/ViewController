@@ -18,7 +18,10 @@ package name.gudong.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -41,11 +44,17 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout mLlContainer;
     @Bind(R.id.pb)
     ProgressBar mPb;
+    @Bind(R.id.root_layout)
+    FrameLayout mRootLayout;
 
-private ViewController<List<String>> mHousePhotoViewController;
-private ViewController<HouseDetail.Param> mHouseParamViewControler;
-private ViewController<List<String>> mHouseCommentViewControler;
-private ViewController<String> mHouseDescViewControler;
+    private ViewController<List<String>> mHousePhotoViewController;
+    private ViewController<HouseDetail.Param> mHouseParamViewControler;
+
+    private ViewController<HouseDetail.Param> mHouseParamTopViewControler;
+    private ViewController<HouseDetail.Param> mHouseParamBottomViewControler;
+
+    private ViewController<List<String>> mHouseCommentViewControler;
+    private ViewController<String> mHouseDescViewControler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,18 @@ private ViewController<String> mHouseDescViewControler;
 
         mHousePhotoViewController = new HousePhotoViewController(this);
         mHouseParamViewControler = new HouseParamViewController(this);
+
+
+        mHouseParamTopViewControler = new HouseParamViewController(this);
+        mHouseParamTopViewControler.attachRoot(mRootLayout, Utils.dp2px(200), Utils.dp2px(50));
+
+
+        mHouseParamBottomViewControler = new HouseParamViewController(this);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
+        mHouseParamBottomViewControler.attachRoot(mRootLayout, layoutParams);
+
+
         mHouseDescViewControler = new HouseDescViewController(this);
         mHouseCommentViewControler = new HouseCommentViewController(this);
 
@@ -69,6 +90,11 @@ private ViewController<String> mHouseDescViewControler;
     private void fillData(HouseDetail detail) {
         mHousePhotoViewController.fillData(detail.photos);
         mHouseParamViewControler.fillData(detail.param);
+
+        mHouseParamTopViewControler.fillData(detail.param);
+        mHouseParamBottomViewControler.fillData(detail.param);
+
+
         mHouseDescViewControler.fillData(detail.desc);
         mHouseCommentViewControler.fillData(detail.comments);
     }
@@ -123,4 +149,14 @@ private ViewController<String> mHouseDescViewControler;
         return detail;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHousePhotoViewController.detachedRoot();
+        mHouseParamViewControler.detachedRoot();
+        mHouseDescViewControler.detachedRoot();
+        mHouseCommentViewControler.detachedRoot();
+        mHouseParamTopViewControler.detachedRoot();
+        mHouseParamBottomViewControler.detachedRoot();
+    }
 }

@@ -26,6 +26,7 @@ import android.view.ViewGroup;
  * core of view controler
  * Created by GuDong on 7/13/16 22:42.
  * Contact with gudong.name@gmail.com.
+ *
  * @param <T> data type for this ViewController, a view controler should map a data type
  */
 public abstract class ViewController<T> {
@@ -38,13 +39,45 @@ public abstract class ViewController<T> {
     }
 
     public void attachRoot(ViewGroup root) {
+        initView(root);
+        root.addView(mView);
+        onCreatedView(mView);
+    }
+
+    public void attachRoot(ViewGroup root, int index) {
+        initView(root);
+        root.addView(mView, index);
+        onCreatedView(mView);
+    }
+
+    public void attachRoot(ViewGroup root, int width, int height) {
+        initView(root);
+        root.addView(mView, width, height);
+        onCreatedView(mView);
+    }
+
+    public void attachRoot(ViewGroup root, ViewGroup.LayoutParams params) {
+        initView(root);
+        root.addView(mView, params);
+        onCreatedView(mView);
+    }
+
+
+    public void attachRoot(ViewGroup root, int index, ViewGroup.LayoutParams params) {
+        initView(root);
+        root.addView(mView, index, params);
+        onCreatedView(mView);
+    }
+
+    private void initView(ViewGroup root) {
         int resLayoutId = resLayoutId();
         if (resLayoutId <= 0) {
             throw new IllegalStateException("Please check your layout id in resLayoutId() method");
         }
+        if (mView != null) {
+            throw new IllegalStateException("a viewController can't attachRoot twice");
+        }
         mView = LayoutInflater.from(mContext).inflate(resLayoutId, root, false);
-        root.addView(mView);
-        onCreatedView(mView);
     }
 
     public void fillData(T data) {
@@ -52,6 +85,10 @@ public abstract class ViewController<T> {
         if (mData != null) {
             onBindView(data);
         }
+    }
+
+    public void detachedRoot() {
+        onDestoryView(mView);
     }
 
     /**
@@ -62,7 +99,7 @@ public abstract class ViewController<T> {
     protected abstract int resLayoutId();
 
     /**
-     * view has been
+     * view has been created
      *
      * @param view real view
      */
@@ -74,6 +111,15 @@ public abstract class ViewController<T> {
      * @param data data
      */
     protected abstract void onBindView(T data);
+
+    /**
+     * view has been Destory
+     *
+     * @param view
+     */
+    protected void onDestoryView(View view) {
+
+    }
 
     public Context getContext() {
         return mContext;

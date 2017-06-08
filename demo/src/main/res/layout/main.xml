@@ -20,6 +20,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f9f5f5"
+    android:id="@+id/root_layout"
     android:orientation="vertical">
 
     <ScrollView
